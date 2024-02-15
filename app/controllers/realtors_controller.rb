@@ -3,7 +3,7 @@ class RealtorsController < ApplicationController
 
   # GET /realtors or /realtors.json
   def index
-    @realtors = Realtor.all
+    @realtors = Realtor.paginate(page: params[:page], per_page: 20)
   end
 
   # GET /realtors/1 or /realtors/1.json
