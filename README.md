@@ -1,24 +1,37 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+Basic web app that shows realtors in a paginated table.
+Using Rails 7 with Hotwire and Turbo, TailwindCSS and PostgreSQL
 
-Things you may want to cover:
+## Assumptions
+* Realtors don't need to be loaded directly from a CSV file. Seeding them in PG table instead.
 
-* Ruby version
+* A realtor is considered a duplicate if `First name`, `Last name` and `Brokerage` are the same.
 
-* System dependencies
+## How to run it
 
-* Configuration
+This project assumes you have the following installed:
 
-* Database creation
+* Ruby 3.3.0
+* Rails 7.1.3
+* PostgreSQL 16
 
-* Database initialization
+Also the postgres client should have a role that matches your local machine username. For example on my machine the app will try to connect to 'marinbilic' role. Default postgres installations come with these pre-added so should be fine.
 
-* How to run the test suite
+Create the database and migrate:
+```
+rails db:create db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Run the seed script that loads rows from a CSV file and adds them to the DB:
+```
+rails db:seed
+```
 
-* Deployment instructions
+Run the server with:
+```
+rails s
+```
 
-* ...
+Visit localhost:3000/realtors to see the app.
