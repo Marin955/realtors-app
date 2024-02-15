@@ -19,6 +19,11 @@ This project assumes you have the following installed:
 
 Also the postgres client should have a role that matches your local machine username. For example on my machine the app will try to connect to 'marinbilic' role. Default postgres installations come with these pre-added so should be fine.
 
+Install all dependencies:
+```
+bundle install
+```
+
 Create the database and migrate:
 ```
 rails db:create db:migrate
