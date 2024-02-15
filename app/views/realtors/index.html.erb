@@ -7,8 +7,17 @@
       <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   </head>
   <body class="bg-gray-100 items-center justify-center">
-    <div class="flex min-h-screen items-center justify-center bg-white">
-      <div class="flex flex-col items-center p-6 w-full max-w-4xl mx-auto">        <h1 class="text-3xl font-semibold text-blue-gray-900 my-4 text-center">Boston Realtors</h1>
+    <div class="flex min-h-screen items-center justify-center bg-white w-full">
+      <div class="flex flex-col items-center p-6 w-full max-w-4xl mx-auto">
+      <h1 class="text-3xl font-semibold text-blue-gray-900 my-4 text-center">Boston Realtors</h1>
+      <div class="w-full text-left">
+        <%= form_with(url: search_realtors_path, method: "get", local: true) do |form| %>
+          <div class="mb-4 flex">
+            <%= form.text_field :first_name, value: params[:first_name], placeholder: "Search by First Name", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-4" %>
+            <%= form.submit "Search", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+          </div>
+        <% end %>
+      </div>
         <table class="w-full min-w-max table-auto text-left">
           <thead>
             <tr>
@@ -54,9 +63,11 @@
           </tbody>
         </table>
 
-        <div class="apple_pagination">
-          <%= will_paginate @realtors, class: 'flex justify-center gap-4' %>
-        </div>
+        <% if @realtors.total_pages > 1 %>
+          <div class="apple_pagination w-full">
+            <%= will_paginate @realtors, class: 'flex justify-center gap-4' %>
+          </div>
+        <% end %>
       </div>
     </div>
   </body>
