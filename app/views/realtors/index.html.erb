@@ -1,52 +1,63 @@
-<div class="flex min-h-screen items-center justify-center bg-white">
-    <div class="p-6 overflow-scroll px-0">
-  <table class="w-full min-w-max table-auto text-left">
-    <thead>
-      <tr>
-        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-          <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">Profile photo</p>
-        </th>
-        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-          <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">First name</p>
-        </th>
-        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-          <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">Last name</p>
-        </th>
-        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-          <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">Brokerage</p>
-        </th>
-        <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-          <p class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70">Zip Code</p>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @realtors.each do |realtor| %>
-        <tr>
-          <td class="p-4 border-b border-blue-gray-50">
-            <div class="flex items-center gap-3">
-              <%= image_tag(realtor.image_url, alt: realtor.first_name, class: "inline-block w-12 h-12 rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain p-1") if realtor.image_url.present? %>
-            </div>
-        </td>
-          <td class="p-4 border-b border-blue-gray-50">
-            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.first_name %></p>
-          </td>
-          <td class="p-4 border-b border-blue-gray-50">
-            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.last_name %></p>
-          </td>
-          <td class="p-4 border-b border-blue-gray-50">
-            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.brokerage %></p>
-          </td>
-          <td class="p-4 border-b border-blue-gray-50">
-            <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.zipcode %></p>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div class="py-4">
-    <%= will_paginate @realtors, class: 'flex justify-center gap-4' %>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Boston Realtors</title>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-100 items-center justify-center">
+    <div class="flex min-h-screen items-center justify-center bg-white">
+      <div class="flex flex-col items-center p-6 w-full max-w-4xl mx-auto">        <h1 class="text-3xl font-semibold text-blue-gray-900 my-4 text-center">Boston Realtors</h1>
+        <table class="w-full min-w-max table-auto text-left">
+          <thead>
+            <tr>
+              <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Profile photo</p>
+              </th>
+              <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">First name</p>
+              </th>
+              <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Last name</p>
+              </th>
+              <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Brokerage</p>
+              </th>
+              <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Zip Code</p>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @realtors.each do |realtor| %>
+              <tr>
+                <td class="p-4 border-b border-blue-gray-50">
+                  <div class="flex items-center justify-center gap-3">
+                    <img src="<%= realtor.image_url %>" alt="<%= realtor.first_name %>" class="inline-block relative object-center !rounded-full w-12 h-12 rounded-lg bg-blue-gray-50/50 object-contain p-1">
+                  </div>
+                </td>
+                <td class="p-4 border-b border-blue-gray-50">
+                  <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.first_name %></p>
+                </td>
+                <td class="p-4 border-b border-blue-gray-50">
+                  <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.last_name %></p>
+                </td>
+                <td class="p-4 border-b border-blue-gray-50">
+                  <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.brokerage %></p>
+                </td>
+                <td class="p-4 border-b border-blue-gray-50">
+                  <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.zipcode %></p>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-</div>
+        <div class="apple_pagination">
+          <%= will_paginate @realtors, class: 'flex justify-center gap-4' %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
