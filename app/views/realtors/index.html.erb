@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Realtors</h1>
+
+<div id="realtors">
+  <% @realtors.each do |realtor| %>
+    <%= render realtor %>
+    <p>
+      <%= link_to "Show this realtor", realtor %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New realtor", new_realtor_path %>

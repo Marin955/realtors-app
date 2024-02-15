@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @realtor %>
+
+<div>
+  <%= link_to "Edit this realtor", edit_realtor_path(@realtor) %> |
+  <%= link_to "Back to realtors", realtors_path %>
+
+  <%= button_to "Destroy this realtor", @realtor, method: :delete %>
+</div>

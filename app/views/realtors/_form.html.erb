@@ -1,0 +1,42 @@
+<%= form_with(model: realtor) do |form| %>
+  <% if realtor.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(realtor.errors.count, "error") %> prohibited this realtor from being saved:</h2>
+
+      <ul>
+        <% realtor.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :first_name, style: "display: block" %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name, style: "display: block" %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.label :brokerage, style: "display: block" %>
+    <%= form.text_field :brokerage %>
+  </div>
+
+  <div>
+    <%= form.label :zipcode, style: "display: block" %>
+    <%= form.number_field :zipcode %>
+  </div>
+
+  <div>
+    <%= form.label :image_url, style: "display: block" %>
+    <%= form.text_field :image_url %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
