@@ -1,0 +1,51 @@
+<%= turbo_frame_tag "realtors_list" do %>
+    <table class="w-full min-w-max table-auto text-left">
+        <thead>
+            <tr>
+            <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Profile photo</p>
+            </th>
+            <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">First name</p>
+            </th>
+            <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Last name</p>
+            </th>
+            <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Brokerage</p>
+            </th>
+            <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
+                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Zip Code</p>
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @realtors.each do |realtor| %>
+            <tr>
+            <td class="p-4 border-b border-blue-gray-50">
+                <div class="flex items-center justify-center gap-3">
+                <img src="<%= realtor.image_url %>" alt="<%= realtor.first_name %>" class="inline-block relative object-center !rounded-full w-12 h-12 rounded-lg bg-blue-gray-50/50 object-contain p-1">
+                </div>
+            </td>
+            <td class="p-4 border-b border-blue-gray-50">
+                <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.first_name %></p>
+            </td>
+            <td class="p-4 border-b border-blue-gray-50">
+                <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.last_name %></p>
+            </td>
+            <td class="p-4 border-b border-blue-gray-50">
+                <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.brokerage %></p>
+            </td>
+            <td class="p-4 border-b border-blue-gray-50">
+                <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.zipcode %></p>
+            </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <% if @realtors.total_pages > 1 %>
+        <div class="apple_pagination w-full">
+            <%= will_paginate @realtors, class: 'flex justify-center gap-4' %>
+        </div>
+    <% end %>
+<% end %>

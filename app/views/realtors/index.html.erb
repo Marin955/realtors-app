@@ -1,73 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Boston Realtors</title>
-      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boston Realtors</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   </head>
   <body class="bg-gray-100 items-center justify-center">
     <div class="flex min-h-screen items-center justify-center bg-white w-full">
       <div class="flex flex-col items-center p-6 w-full max-w-4xl mx-auto">
-      <h1 class="text-3xl font-semibold text-blue-gray-900 my-4 text-center">Boston Realtors</h1>
-      <div class="w-full text-left">
-        <%= form_with(url: search_realtors_path, method: "get", local: true) do |form| %>
-          <div class="mb-4 flex">
-            <%= form.text_field :first_name, value: params[:first_name], placeholder: "Search by First Name", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-4" %>
-            <%= form.submit "Search", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-          </div>
-        <% end %>
-      </div>
-        <table class="w-full min-w-max table-auto text-left">
-          <thead>
-            <tr>
-              <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Profile photo</p>
-              </th>
-              <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">First name</p>
-              </th>
-              <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Last name</p>
-              </th>
-              <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Brokerage</p>
-              </th>
-              <th class="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                <p class="block antialiased font-sans text-sm text-blue-gray-900 font-bold leading-none opacity-70">Zip Code</p>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @realtors.each do |realtor| %>
-              <tr>
-                <td class="p-4 border-b border-blue-gray-50">
-                  <div class="flex items-center justify-center gap-3">
-                    <img src="<%= realtor.image_url %>" alt="<%= realtor.first_name %>" class="inline-block relative object-center !rounded-full w-12 h-12 rounded-lg bg-blue-gray-50/50 object-contain p-1">
-                  </div>
-                </td>
-                <td class="p-4 border-b border-blue-gray-50">
-                  <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.first_name %></p>
-                </td>
-                <td class="p-4 border-b border-blue-gray-50">
-                  <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.last_name %></p>
-                </td>
-                <td class="p-4 border-b border-blue-gray-50">
-                  <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.brokerage %></p>
-                </td>
-                <td class="p-4 border-b border-blue-gray-50">
-                  <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"><%= realtor.zipcode %></p>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-        <% if @realtors.total_pages > 1 %>
-          <div class="apple_pagination w-full">
-            <%= will_paginate @realtors, class: 'flex justify-center gap-4' %>
-          </div>
-        <% end %>
+        <h1 class="text-3xl font-semibold text-blue-gray-900 my-4 text-center">Boston Realtors</h1>
+        <div class="w-full text-left">
+          <%= form_with url: realtors_search_index_path, method: :get, local: true, data: { controller: "search", action: "input->search#search" } do |form| %>
+            <div class="mb-4">
+              <%= form.text_field :first_name, value: params[:first_name], placeholder: "Search by First Name", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", data: { action: "input->search#search" } %>
+            </div>
+          <% end %>
+        </div>
+        <%= render partial: "realtors/search/realtors_list", locals: { realtors: @realtors } %>
       </div>
     </div>
   </body>
