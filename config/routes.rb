@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   namespace :realtors do
     resources :search, only: [:index]
   end
+
+  root 'realtors/search#index'
 end
