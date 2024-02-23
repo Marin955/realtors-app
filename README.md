@@ -39,4 +39,4 @@ Run the server with:
 rails s
 ```
 
-Visit localhost:3000/realtors to see the app.
+Visit localhost:3000 to see the app.
